@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16"></script>
+    <style>
+        .c1{
+            float:left;
+            display: inline-block;
+            width:230px;
+            height:2500px;
+            margin: 0px;
+        }
+        .c2{
+            color:rgb(255, 255, 255);
+            font-size:20px;
+            font-weight:400;
+            text-align:center;
+            background:rgb(38, 156, 206);
+            cursor:pointer;
+            border: 1px solid gray;
+        }
+        .c3{
+            display:block;
+            padding:7px 10px;
+            border:1px dotted gray;
+
+        }
+        .hide{
+            display:none;
+        } 
+        .show {  
+            display: block;  
+        }
+        .title{
+            height: 70px;
+            text-align: center;
+            padding: 15px;
+            margin: 0;
+        }
+        .sideTitle{
+            font-size: large;
+            margin: 0;
+            background-color: #7bbfea;
+            margin: 0;
+        }
+        .dowmTitle{
+            font-size: larger;
+            margin: 0;
+        }  
+        .navFont{
+            font-size: large;
+        } 
+        .mainOther{
+            padding-left: 20px;
+        }
+        .main{
+            margin-right: 400px;
+            padding-left: 10px;
+        }
+        .mainBlock{
+            float:left;
+            display: inline-block;
+            width:900px;
+            margin-left: 60px;
+        }
+        .textarea {  
+            position: fixed;  
+            top: 230px;  
+            left: 1085px;  
+        }
+        .pen{
+            margin-left: 40px;
+            width:250px;
+            float: right;
+        }
+        .popup {  
+            width: 800px;  
+            height: 500px;  
+            border: 5px solid rgb(38, 156, 206);  
+            padding: 10px;  
+            position: relative;  
+        }  
+        .close-btn {  
+            position: absolute;  
+            top: 10px;  
+            right: 10px;  
+            cursor: pointer;  
+        } 
+        .tableStyle{
+            width: 800px;
+        } 
+        .table-striped tbody tr:nth-of-type(odd) {  
+            background-color: #ffffff; /* 自定义奇数行颜色 */  
+        }  
+            
+            .table-striped tbody tr:nth-of-type(even) {  
+            background-color: #ebeaea; /* 自定义偶数行颜色 */  
+        }
+    </style>
+</head>
+<body>
+   
+    <h1 class="p-3 mb-2 bg-primary text-white title">
+        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        <span class="glyphicon-class">Hotels in Fuzhou</span>
+      </li>福州酒店推荐<span></span></h1>
+      <ul class="sideTitle">
+        <li class="p-3 mb-2 bg-primary-subtle text-emphasis-primary">Welcome to Fuzhou, I hope you have a wonderful experience.</li>
+    </ul>
+<!-- 导航栏 -->
+<nav class="navbar fixed-top bg-body-tertiary">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header p-3 mb-2">
+                <a class="navbar-brand dowmTitle" href="#">基于酒店网络评价分析</a>
+            </div>
+        </nav>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse mainOther" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active navFont main " style="font-size:25px;"><a href="#">酒店特色<span class="sr-only main">(current)</span></a></li>
+                    <li><a href="#" class="navFont mainOther link selected" id="toggleButton1" >服务</a></li>
+                    <li><a href="#" class="navFont mainOther" id="toggleButton2">环境</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle navFont mainOther" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false" id="toggleButton3">房间</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">数据分析详情</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+<div class="c1">
+    <div class="item">
+        <div class="c2" onclick="clickMe(this);">福州天元国际威斯汀酒店</div>
+        <div class="c3 hide">
+            <span class="c3" style="color:rgb(34, 139, 184);">离万达广场近</span>
+            <span class="c3" style="color:rgb(34, 139, 184);">天梦之床</span>
+            <a class="c3" href="https://hotels.ctrip.com/hotels/430368.html?cityid=258" target="_blank">查看详情</a>
+        </div>
+    </div>
+<div class="c2" onclick="clickMe(this);">福州西湖大酒店</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">湖光山色第一楼</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">佛跳墙和鸡汤汆海蚌</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/458623.html?cityid=258" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this);">福州世纪金源大饭店</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">温泉水SPA</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">位于福州商贸中心</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/448418.html?cityid=258" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">福州名城大酒店(马尾自贸区店)</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">邻近商业区</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">佛跳墙和新春盆菜</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/436759.html?cityid=258" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">福州香格里拉大酒店</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">位于福州市中心黄金商圈</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">客房豪华</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/429558.html?cityid=258#ctm_ref=www_hp_his_lst" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">阿弥陀佛大饭店(福州奥体店)</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">素食</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">自助早餐和火锅</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/23676087.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">福州聚春园大酒店</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">佛跳墙发祥地</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">离三坊七巷、地铁口近</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/1814840.html?cityid=258" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">福州新紫阳大酒店</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">紫阳海鲜楼</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">位于福州市晋安区商贸中心</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/4618844.html?cityid=258" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">聚春园·福州大饭店</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">天然温泉洗浴</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">佛跳墙</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/484446.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">福建山水大酒店(三坊七巷店)</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">三坊七巷</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">美食街（夜市）</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/513301.html?cityid=258" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">连江国惠大酒店</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">丰富的休闲娱乐设施</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">闽粤菜中式料理、海鲜</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/3362141.html?cityid=21509" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">福建国惠大酒店</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">位于长乐</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">设施齐全丰富</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/8556455.html?cityid=258" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">福建省闽江饭店</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">市中心温泉地段</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">智能化停车场</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/479870.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">福州晋都戴斯国际酒店</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">商务出差</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">离火车站近</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/436756.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">福州聚春园·于山宾馆(三坊七巷店)</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">温泉水</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">靠近五一广场、三坊七巷</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/1718000.html?cityid=258" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">最佳西方财富酒店</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">最佳西方国际服务精神</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">通道文化（福州地域性文化）</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/435205.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a>
+</div>
+<div class="c2" onclick="clickMe(this)">福建阳光假日大酒店</div>
+<div class="c3 hide">
+    <span class="c3" style="color:rgb(34, 139, 184);">纯天然温泉</span>
+    <span class="c3" style="color:rgb(34, 139, 184);">靠近五一广场</span>
+    <a class="c3" href="https://hotels.ctrip.com/hotels/483819.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a>
+</div>
+</div>
+<textarea placeholder="此处可输入笔记..." class="pen textarea" rows="100"></textarea>
+<div class="mainBlock popup"><span>
+    <h3 style="text-indent:50px;">欢迎来到基于SOR理论的酒店推荐网站！</h3>
+    <h3 style="text-indent:50px;">我们专注于为您提供快速、准确的酒店信息，帮助您轻松找到满足需求的理想住宿。</h3>
+    <h3 style="text-indent:50px;">点击左侧按钮，您可以轻松浏览各酒店的独特卖点，让您快速了解酒店特色。</h3>
+    <h3 style="text-indent:50px;">点击上方按钮，您将深入了解酒店在服务、环境、房间等各方面的细致排名。此外，我们还提供网络评价的情感分析，让您了解其他住客的真实感受，为决策提供参考。</h3>
+    <h3 style="text-indent:50px;">在右侧区域，您可以根据酒店的内容做笔记，轻松记录重要信息，方便比较和选择。</h3>
+    <h3 style="text-indent:50px;">同时，右上方的数据分析详情展示了我们的数据具体分析过程，让您更加信任我们的推荐结果。</h3>
+</span>  
+    <button class="close-btn">×</button> </div>
+<div class="mainBlock hide hideable" id="myElement1">
+    <div class="panel panel-default tableStyle">
+      <!-- Default panel contents -->
+      <div class="panel-heading">服务</div>
+      <div class="panel-body">
+        <p>这里写对服务的介绍Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+
+      <!-- Table -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>酒店名称</th>
+            <th>情感词</th>
+            <th>详情</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>福州新紫阳大酒店</td>
+            <td>热情、
+                周到、
+                温馨                
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/4618844.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>福州香格里拉大酒店</td>
+            <td>热情、
+                贴心、
+                周到、
+                宾至如归、
+                细致
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/429558.html?cityid=258#ctm_ref=www_hp_his_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>福州名城大酒店(马尾自贸区店)</td>
+            <td>热情、
+                舒服、
+                周到、
+                贴心
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/436759.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>福建阳光假日大酒店</td>
+            <td>热情、
+                舒服、
+                周到、
+                温馨
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/483819.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>最佳西方财富酒店</td>
+            <td>热情、
+                周到、
+                宾至如归、
+                主动、
+                温馨
+            </td>
+            <<td><a href="https://hotels.ctrip.com/hotels/435205.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>聚春园·福州大饭店</td>
+            <td>贴心、
+                周到、
+                温馨、
+                及时
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/484446.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>福州西湖大酒店</td>
+            <td>热情、
+                贴心、
+                周到、
+                温馨
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/458623.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td>福州晋都戴斯国际酒店</td>
+            <td>舒服、
+                温馨
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/436756.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td>福建省闽江饭店</td>
+            <td>热情、
+                舒服、
+                周到、
+                贴心、
+                温馨
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/479870.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td>连江国惠大酒店</td>
+            <td>热情、
+                周到、
+                温暖
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/3362141.html?cityid=21509" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">11</th>
+            <td>福州世纪金源大饭店</td>
+            <td>热情、
+                周到、
+                舒适、
+                贴心
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/448418.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">12</th>
+            <td>阿弥陀佛大饭店(福州奥体店)</td>
+            <td>贴心、
+                热情、
+                舒适
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/23676087.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">13</th>
+            <td>福建国惠大酒店</td>
+            <td>热情、
+                利落、
+                周到
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/8556455.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">14</th>
+            <td>福州天元国际威斯汀酒店</td>
+            <td>热情、
+                舒适、
+                贴心、
+                漂亮、
+                到位
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/430368.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">15</th>
+            <td>福建山水大酒店(三坊七巷店)</td>
+            <td>热情、
+                贴心、
+                周到、
+                细致、
+                舒适
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/513301.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">16</th>
+            <td>福州聚春园·于山宾馆(三坊七巷店)</td>
+            <td>热情、
+                舒适、
+                贴心、
+                温馨
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/1718000.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">17</th>
+            <td>福州聚春园大酒店</td>
+            <td>热情、
+                贴心
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/1814840.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+<div class="mainBlock hide hideable" id="myElement2">
+    <div class="panel panel-default tableStyle">
+      <!-- Default panel contents -->
+      <div class="panel-heading">环境</div>
+      <div class="panel-body">
+        <p>这里写对环境的介绍Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+
+      <!-- Table -->
+      <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>酒店名称</th>
+                <th>情感词</th>
+                <th>详情</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>福建阳光假日大酒店</td>
+            <td>方便、
+                舒服、
+                安静、
+                优越
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/483819.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>福州聚春园·于山宾馆(三坊七巷店)</td>
+            <td>方便、
+                闹中取静、
+                舒适、
+                优美
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/1718000.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>福建山水大酒店(三坊七巷店)</td>
+            <td>便利、
+                安静、
+                舒适
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/513301.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>连江国惠大酒店</td>
+            <td>方便、
+                安静、
+                优越
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/3362141.html?cityid=21509" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>福建省闽江饭店</td>
+            <td>方便、
+                舒服
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/479870.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>聚春园·福州大饭店</td>
+            <td>方便、
+                安静、
+                优越
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/484446.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>福州名城大酒店(马尾自贸区店)</td>
+            <td>舒服、
+                安静、
+                便利
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/436759.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td>福州世纪金源大饭店</td>
+            <td>方便、
+                安静、
+                舒适、
+                优越
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/448418.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td>福州晋都戴斯国际酒店</td>
+            <td>便利、
+                舒服、
+                安静
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/436756.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td>福建国惠大酒店</td>
+            <td>干净、
+                方便、
+                便利
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/8556455.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">11</th>
+            <td>福州西湖大酒店</td>
+            <td>方便、
+                优美、
+                舒服
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/458623.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">12</th>
+            <td>福州香格里拉大酒店</td>
+            <td>方便、
+                优越、
+                舒服
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/429558.html?cityid=258#ctm_ref=www_hp_his_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">13</th>
+            <td>福州天元国际威斯汀酒店</td>
+            <td>方便、
+                舒适、
+                闹中取静
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/430368.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">14</th>
+            <td>阿弥陀佛大饭店(福州奥体店)</td>
+            <td>方便、
+                安静、
+                舒适
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/23676087.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">15</th>
+            <td>最佳西方财富酒店</td>
+            <td>方便、
+                安静、
+                优越
+            </td>
+            <<td><a href="https://hotels.ctrip.com/hotels/435205.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">16</th>
+            <td>福州聚春园大酒店</td>
+            <td>方便、
+                优越、
+                安静
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/1814840.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">17</th>
+            <td>福州新紫阳大酒店</td>
+            <td>方便、
+                安静、
+                舒服
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/4618844.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+<div class="mainBlock hide hideable" id="myElement3">
+    <div class="panel panel-default tableStyle">
+      <!-- Default panel contents -->
+      <div class="panel-heading">房间</div>
+      <div class="panel-body">
+        <p>这里写对房间的介绍Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+
+      <!-- Table -->
+      <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>酒店名称</th>
+                <th>情感词</th>
+                <th>详情</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>连江国惠大酒店</td>
+            <td>干净、
+                卫生、
+                整洁、
+                舒适、
+                齐全
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/3362141.html?cityid=21509" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>最佳西方财富酒店</td>
+            <td>干净、
+                舒适、
+                陈旧、
+                整洁、
+                齐全
+            </td>
+            <<td><a href="https://hotels.ctrip.com/hotels/435205.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>福州晋都戴斯国际酒店</td>
+            <td>干净、
+                卫生、
+                陈旧、
+                舒服
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/436756.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>阿弥陀佛大饭店(福州奥体店)</td>
+            <td>干净、
+                卫生、
+                整洁、
+                舒适、
+                宽敞
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/23676087.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>福州新紫阳大酒店</td>
+            <td>干净、
+                卫生、
+                齐全、
+                整洁、
+                舒服
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/4618844.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>福州世纪金源大饭店</td>
+            <td>干净、
+                卫生、
+                陈旧、
+                舒适、
+                整洁
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/448418.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>聚春园·福州大饭店</td>
+            <td>干净、
+                卫生、
+                舒适、
+                整洁、
+                陈旧
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/484446.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td>福州天元国际威斯汀酒店</td>
+            <td>干净、
+                卫生、
+                舒适、
+                陈旧
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/430368.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td>福建国惠大酒店</td>
+            <td>干净、
+                卫生、
+                整洁、
+                舒适
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/8556455.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td>福州聚春园·于山宾馆(三坊七巷店)</td>
+            <td>干净、
+                卫生、
+                陈旧、
+                舒适、
+                整洁
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/1718000.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">11</th>
+            <td>福建阳光假日大酒店</td>
+            <td>卫生、
+                陈旧、
+                舒服、
+                整洁
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/483819.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">12</th>
+            <td>福建山水大酒店(三坊七巷店)</td>
+            <td>干净、
+                卫生、
+                整洁、
+                舒适
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/513301.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">13</th>
+            <td>福建省闽江饭店</td>
+            <td>卫生、
+                干净、
+                舒服、
+                整洁、
+                齐全
+            </td>
+            <td><a href="https://hotels.ctrip.com/hotels/479870.html?cityid=258#ctm_ref=www_hp_bs_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">14</th>
+            <td>福州名城大酒店(马尾自贸区店)</td>
+            <td>干净、
+                卫生、
+                舒服、
+                整洁
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/436759.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">15</th>
+            <td>福州香格里拉大酒店</td>
+            <td>干净、
+                整洁、
+                舒适、
+                豪华
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/429558.html?cityid=258#ctm_ref=www_hp_his_lst" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">16</th>
+            <td>福州聚春园大酒店</td>
+            <td>干净、
+                卫生、
+                陈旧
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/1814840.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+          <tr>
+            <th scope="row">17</th>
+            <td>福州西湖大酒店</td>
+            <td>干净、
+                卫生、
+                整洁、
+                舒服
+                </td>
+            <td><a href="https://hotels.ctrip.com/hotels/458623.html?cityid=258" target="_blank">查看详情</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+<!-- <div class="mainBlock">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos doloribus corporis deleniti voluptatum et sit cumque suscipit veritatis delectus consectetur consequatur nemo ad tenetur pariatur officiis qui magnam, fugit laudantium.</span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi nam atque tempora id saepe voluptates minima mollitia sint molestias voluptas eveniet eos adipisci sit et, voluptatibus accusamus exercitationem dolor fugiat?</div> -->
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    function clickMe(self){
+        var hasHide=$(self).next().hasClass("hide");
+        if (hasHide){
+            $(self).next().removeClass("hide");
+        }else{
+            $(self).next().addClass("hide");
+        }
+    }
+    $(document).ready(function() {  
+    $('.my-element').show(); // 使用show()方法来显示元素  
+  });  
+  // 获取叉号按钮元素  
+  const closeButton = document.querySelector('.close-btn');  
+  
+  // 添加点击事件监听器  
+  closeButton.addEventListener('click', function() {  
+    // 获取弹出框元素  
+    const popup = closeButton.closest('.popup');  
+  
+    // 隐藏弹出框  
+    popup.style.display = 'none';  
+  });  
+    $(document).ready(function() {  
+  $('#toggleButton1').click(function() {  
+    // 检查元素是否当前是隐藏的，如果是，则显示它；否则，隐藏它。  
+    if ($('#myElement1').hasClass('hide')) {  
+      $('#myElement1').removeClass('hide').addClass('show');  
+    } else {  
+      $('#myElement1').removeClass('show').addClass('hide');  
+    }  
+  });  
+});
+$(document).ready(function() {  
+  $('#toggleButton2').click(function() {  
+    // 检查元素是否当前是隐藏的，如果是，则显示它；否则，隐藏它。  
+    if ($('#myElement2').hasClass('hide')) {  
+      $('#myElement2').removeClass('hide').addClass('show');  
+    } else {  
+      $('#myElement2').removeClass('show').addClass('hide');  
+    }  
+  });  
+});
+$(document).ready(function() {  
+  $('#toggleButton3').click(function() {  
+    // 检查元素是否当前是隐藏的，如果是，则显示它；否则，隐藏它。  
+    if ($('#myElement3').hasClass('hide')) {  
+      $('#myElement3').removeClass('hide').addClass('show');  
+    } else {  
+      $('#myElement3').removeClass('show').addClass('hide');  
+    }  
+  });  
+}); 
+
+</script>
+
+</body>
+</html>
